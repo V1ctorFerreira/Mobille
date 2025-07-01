@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardColletions : MonoBehaviour
 {
-    [SerializeField] int gridCardsLimit;
-    [SerializeField] int cardAmount;
+    [SerializeField][Min(1)] int gridCardsLimit;
+    [SerializeField][Min(0)] int cardAmount;
     [SerializeField] GameObject card;
     [SerializeField] GameObject grid;
 
+    [SerializeField] Button nextPage;
+    [SerializeField] Button previusPage;
+    GridLayoutGroup[] collectionPages;
+    int pageseIndex;
     void Start()
     {
         GameObject tempGrid = Instantiate(grid,transform);
@@ -20,8 +25,45 @@ public class CardColletions : MonoBehaviour
             }
             Instantiate(card, tempGrid.transform);
         }
+        collectionPages = GetComponentsInChildren<GridLayoutGroup>(true);
+        ActiveUIElement();
+        nextPage.onClick.AddListener(delegate
+        {
+            CollectionNavigate(1);
+        });
+        previusPage.onClick.AddListener(delegate
+        {
+            CollectionNavigate(-1);
+        });
+
+
+
+
+
 
     }
+
+    public void CollectionNavigate(int value)
+    {
+        collectionPages[pageseIndex].gameObject.SetActive(false);
+        pageseIndex += value;
+
+        if(pageseIndex >= collectionPages.Length)
+             pageseIndex = 0;
+
+
+        if(pageseIndex < 0)
+            pageseIndex = collectionPages.Length - 1;
+
+        collectionPages[pageseIndex].gameObject.SetActive(true);
+    }
+
+    void ActiveUIElement()
+    {
+        nextPage.gameObject.SetActive(true);
+        previusPage.gameObject.SetActive(true);
+    }
+    
 
    
    
