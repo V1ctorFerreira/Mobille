@@ -358,6 +358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a30d4a1980a6c4987cc263b73be18a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toolSystem:
+    toolCooldonw: 15
+    tollInHand: 1
   joystick: {fileID: 138735423}
   speed: 5
 --- !u!61 &429016819
@@ -890,7 +893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &622140562
 RectTransform:
   m_ObjectHideFlags: 0
