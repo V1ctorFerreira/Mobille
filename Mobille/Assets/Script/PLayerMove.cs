@@ -81,4 +81,11 @@ public class PLayerMove : MonoBehaviour
 
         
     }
+    public void Delete()
+    {
+        if(!File.Exists(savePath))
+            return;
+
+        File.Delete(savePath);
+    }
 }
